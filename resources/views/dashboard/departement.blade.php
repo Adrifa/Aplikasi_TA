@@ -25,16 +25,16 @@
                 <table class="table datatable">
                     <thead>
                         <tr>
-                            <th style="width: 10%;text-align:center">ID</th>
+                            <th style="width: 10%;text-align:left">ID</th>
                             <th style="text-align: left">Departement</th>
                             <th style="text-align: center">Keterangan</th>
                             <th style="width: 10%;text-align:center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($departements as $departement)
+                       @foreach($departements as $index => $departement)
                             <tr>
-                                <td style="text-align: left">{{ $departement->id }}</td>
+                                <td style="text-align: left">{{ $index + 1 }}</td>
                                 <td style="text-align: left">{{ $departement->namadepartement }}</td>
                                 <td style="text-align: left">{{ $departement->keterangan }}</td>
                                 <td style="text-align: center">
