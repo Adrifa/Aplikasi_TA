@@ -82,9 +82,9 @@
     </div>
 
     <div class="row mb-3">
-        <label for="iddepertement" class="col-sm-2 col-form-label">Departement</label>
+        <label for="iddepartement" class="col-sm-2 col-form-label">Departement</label>
         <div class="col-sm-10">
-            <select name="iddepertement" class="form-control" required>
+            <select name="iddepartement" class="form-control" required>
                 @foreach ($departements as $departement)
                     <option value="{{ $departement->id }}">{{ $departement->namadepartement }}</option>
                 @endforeach

@@ -78,9 +78,9 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Departement</label>
                   <div class="col-sm-10">
-                    <select name="iddepertement" class="form-control" required>
+                    <select name="iddepartement" class="form-control" required>
                     @foreach ($departements as $departement)
-                        <option value="{{ $departement->id }}" {{ $pegawai->iddepertement == $departement->id ? 'selected' : '' }}>{{ $departement->namadepartement }}</option>
+                        <option value="{{ $departement->id }}" {{ $pegawai->iddepartement == $departement->id ? 'selected' : '' }}>{{ $departement->namadepartement }}</option>
                     @endforeach
                     </select>
                   </div>

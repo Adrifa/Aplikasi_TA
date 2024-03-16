@@ -49,10 +49,10 @@ class PegawaiController extends Controller
             'rfid' => 'required|unique:pegawais',
             'email' => 'required|email|unique:pegawais',
             'password' => 'required',
-            'iddepertement' => 'required',
+            'iddepartement' => 'required',
         ]);
 
-        try {
+    //    try {
             // Simpan data pegawai ke dalam database
             Pegawai::create([
                 'namapegawai' => $request->input('namapegawai'),
@@ -62,15 +62,15 @@ class PegawaiController extends Controller
                 'rfid' => $request->input('rfid'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
-                'iddepertement' => $request->input('iddepertement'),
+               'iddepartement' => $request->input('iddepartement'),
             ]);
 
             // Redirect ke halaman yang sesuai
             return redirect()->route('pegawais.index'); // Ganti 'nama_route' dengan nama route yang sesuai
-        } catch (\Exception $e) {
+     //   } catch (\Exception $e) {
             // Tangani error jika terjadi
-            return back()->withError($e->getMessage())->withInput();
-        }
+      //      return back()->withError($e->getMessage())->withInput();
+    //    }
     }
 
 
@@ -119,7 +119,7 @@ class PegawaiController extends Controller
                     'rfid' => 'required|unique:pegawais,rfid,' . $id,
                     'email' => 'required|email|unique:pegawais,email,' . $id,
                     'password' => 'required',
-                    'iddepertement' => 'required',
+                   'iddepartement' => 'required',
                 ]);
 
                 // Temukan pegawai berdasarkan ID
@@ -134,7 +134,7 @@ class PegawaiController extends Controller
                     'rfid' => $request->input('rfid'),
                     'email' => $request->input('email'),
                     'password' => bcrypt($request->input('password')),
-                    'iddepertement' => $request->input('iddepertement'),
+                    'iddepartement' => $request->input('iddepartement'),
                 ]);
 
 
