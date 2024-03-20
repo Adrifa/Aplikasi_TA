@@ -20,25 +20,19 @@
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4"></h5>
-                    <p class="text-center small">Silahkan masukkan username dan passaword Anda :</p>
+                    <p class="text-center small">TAP Kartu Kerja Anda Disini :</p>
                   </div>
 
-                  <form  method="POST" action="{{ route('login.submit') }}" class="row g-3 needs-validation" novalidate>
+                  <form  method="POST" action="{{ route('scanabsensi.submit') }}" class="row g-3 needs-validation" novalidate>
                     @csrf
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="yourUsername" class="form-label">RFID</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="email" name="email" class="form-control" id="yourUsername" required>
+                        <input type="text" name="rfid" class="form-control" id="yourUsername" required>
                         <div class="invalid-feedback">Please enter your username.</div>
                       </div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
                     <div class="col-12">

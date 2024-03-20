@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\ScanAbsensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::get('/departements/create', [DepartementController::class, 'create'])->na
 Route::post('/departements', [DepartementController::class, 'store'])->name('departements.store');
 Route::get('/departements/{id}/edit', [DepartementController::class, 'edit'])->name('departements.edit');
 Route::put('/departements/{id}', [DepartementController::class, 'update'])->name('departements.update');
-Route::delete('/departements/{id}', [DepartementController::class, 'destroy'])->name('departements.destroy');
-
+//scan
+Route::get('/scan', [ScanAbsensiController::class, 'index'])->name('scan');
+Route::post('/scan/scanabsensi', [ScanAbsensiController::class, 'scanabsensi'])->name('scanabsensi.submit');
+Route::get('/scan/scanabsensiview', [ScanAbsensiController::class, 'scanabsensiview'])->name('scanabsensiview');
 
