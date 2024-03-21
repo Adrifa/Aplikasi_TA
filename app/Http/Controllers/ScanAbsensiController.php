@@ -6,6 +6,7 @@ use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\pegawai;
+use Illuminate\Support\Carbon;
 class ScanAbsensiController extends Controller
 {
     public function index()
@@ -17,6 +18,7 @@ class ScanAbsensiController extends Controller
     }
     public function scanabsensi(Request $request)
     {
+        date_default_timezone_set('Asia/Jakarta');
         // dd($request);
         $request->validate([
             'rfid' => 'required',
@@ -31,20 +33,28 @@ class ScanAbsensiController extends Controller
             // Jika ditemukan, ambil ID pegawai
             $pegawaiId = $pegawai->id;
             $namapegawai = $pegawai->namapegawai;
-            $tanggal = $pegawai->tanggal;
-            $jam = $pegawai->jam;
-
+            $tanggal = date('Y-m-d'); // Mendapatkan tanggal saat ini dalam format 'Y-m-d'
+            $jam = date('H:i:s'); // Mendapatkan waktu saat ini dalam format 'H:i:s'
+            $alert = 'success';
+            $pesan = 'Anda Berhasil Absen';
             $absensi = Absensi::create([
                 'idpegawais' => $pegawaiId,
-                'tanggal' => date('Y-m-d'),
-                'jam' => date('H:i:s'),
+                'tanggal' =>  $tanggal,
+                'jam' => $jam,
             ]);
-            // Lakukan sesuatu dengan ID pegawai...
-           // return "ID Pegawai yang sesuai dengan RFID {$rfid} adalah {$pegawaiId}";
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan'));
+
 
         } else {
             // Jika tidak ditemukan, kembalikan pesan error atau lakukan tindakan yang sesuai
-            return "Tidak ada pegawai yang sesuai dengan RFID {$rfid}";
+            $pegawaiId = '';
+            $namapegawai ='';
+            $tanggal = '';
+            $jam ='';
+            $alert = 'danger';
+            $pesan = 'Maaf. Data Tidak Ditemukan';
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan'));
+
         }
     }
 }

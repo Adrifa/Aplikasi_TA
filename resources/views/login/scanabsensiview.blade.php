@@ -32,7 +32,16 @@
                         <input type="text" name="rfid" class="form-control" id="yourUsername" required autofocus>
                       </div>
                     </div>
+                    <div class="col-12">
 
+                        <div class="alert alert-{{ $alert }} alert-dismissible fade show" role="alert">
+                            <h4 class="alert-heading" style="text-align: center">{{ $pesan }}</h4>
+                            <p style="text-align: center">{{ $namapegawai }} <br /> <b>@if($jam != '') {{ date('H:i', strtotime($jam));}} @endif <b></p>
+                            <hr>
+                        </div>
+
+
+                    </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit" name="login">Scan</button>
                     </div>
