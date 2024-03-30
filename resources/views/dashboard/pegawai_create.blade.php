@@ -94,7 +94,7 @@
 
     <div class="row mb-3">
         <div class="col-sm-10 offset-sm-2">
-            <button type="submit" class="btn btn-primary" name="submit">Submit Form</button>
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </div>
     </div>
 </form>

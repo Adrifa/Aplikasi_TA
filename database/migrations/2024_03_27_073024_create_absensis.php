@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAbsensisTable extends Migration
+class CreateAbsensis extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,8 @@ class CreateAbsensisTable extends Migration
             $table->integer('idpegawais');
             $table->date('tanggal');
             $table->time('jam');
+            $table->string('status');
+            $table->timestamps();
         });
     }
 

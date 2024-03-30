@@ -259,11 +259,12 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link collapsed" href="{{ route('absensis.index') }}">
           <i class="bi bi-card-list"></i>
           <span>Absensi</span>
         </a>
       </li><!-- End Register Page Nav -->
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">
@@ -279,6 +280,12 @@
         </a>
       </li><!-- End Error 404 Page Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('settingjams.index') }}">
+          <i class="bi bi-card-list"></i>
+          <span>Setting Jam</span>
+        </a>
+      </li><!-- End Register Page Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-blank.html">
           <i class="bi bi-file-earmark"></i>

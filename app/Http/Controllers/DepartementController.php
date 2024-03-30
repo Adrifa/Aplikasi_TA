@@ -15,7 +15,8 @@ class DepartementController extends Controller
     public function index()
     {
         $departements = departement::all();
-        return view('dashboard/departement', compact('departements'));      }
+        return view('dashboard/departement', compact('departements'));
+       }
 
     /**
      * Show the form for creating a new resource.

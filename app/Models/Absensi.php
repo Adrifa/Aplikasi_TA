@@ -11,5 +11,6 @@ class Absensi extends Model
         'idpegawais',
         'tanggal',
         'jam',
+        'status',
     ];
 }

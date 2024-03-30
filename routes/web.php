@@ -3,8 +3,10 @@
 use App\Models\Departement;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingJamController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\ScanAbsensiController;
 
@@ -35,14 +37,23 @@ Route::get('/pegawais/{id}/edit', [PegawaiController::class, 'edit'])->name('peg
 Route::put('/pegawais/{id}', [PegawaiController::class, 'update'])->name('pegawais.update');
 Route::delete('/pegawais/{id}', [PegawaiController::class, 'destroy'])->name('pegawais.destroy');
 //departments
-
 Route::get('/departements', [DepartementController::class, 'index'])->name('departements.index');
 Route::get('/departements/create', [DepartementController::class, 'create'])->name('departements.create');
 Route::post('/departements', [DepartementController::class, 'store'])->name('departements.store');
 Route::get('/departements/{id}/edit', [DepartementController::class, 'edit'])->name('departements.edit');
 Route::put('/departements/{id}', [DepartementController::class, 'update'])->name('departements.update');
+Route::delete('/departements/{id}', [DepartementController::class, 'destroy'])->name('departements.destroy');
+//absensi
+Route::get('/absensis', [AbsensiController::class, 'index'])->name('absensis.index');
+Route::get('/absensis/create', [AbsensiController::class, 'create'])->name('absensis.create');
+Route::post('/absensis', [AbsensiController::class, 'store'])->name('absensis.store');
+Route::get('/absensis/{id}/edit', [AbsensiController::class, 'edit'])->name('absensis.edit');
+Route::put('/absensis/{id}', [AbsensiController::class, 'update'])->name('absensis.update');
+Route::delete('/absensis/{id}', [AbsensiController::class, 'destroy'])->name('absensis.destroy');
 //scan
 Route::get('/scan', [ScanAbsensiController::class, 'index'])->name('scan');
 Route::post('/scan/scanabsensi', [ScanAbsensiController::class, 'scanabsensi'])->name('scanabsensi.submit');
 Route::get('/scan/scanabsensiview', [ScanAbsensiController::class, 'scanabsensiview'])->name('scanabsensiview');
+//settingjam
+Route::resource('settingjams', SettingJamController::class);
 

@@ -6,6 +6,7 @@ use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\pegawai;
+use App\Models\SettingJam;
 use Illuminate\Support\Carbon;
 class ScanAbsensiController extends Controller
 {
@@ -27,6 +28,24 @@ class ScanAbsensiController extends Controller
         //mengambil id di table pegawais
         // Cari pegawai berdasarkan RFID
         $pegawai = Pegawai::where('rfid', $rfid)->first();
+        $jamsekarang = date('H:i:s');
+        //$jamsekarang = date('17:30:00');
+        //ambildata di setting waktu
+        $settingwaktu = 'settingwaktu';
+        $status = SettingJam::where('namasetting', $settingwaktu)->first();
+        $jammasukawal = $status->jammasukawal;
+        $jammasukakhir = $status->jammasukakhir;
+        $jamkeluaraawal = $status->jamkeluaraawal;
+        $jamkeluarakhir = $status->jamkeluarakhir;
+
+        if($jamsekarang >= $jammasukawal AND $jamsekarang <= $jammasukakhir){
+            $statusabsen = 'masuk';
+        }elseif($jamsekarang >= $jamkeluaraawal AND $jamsekarang <= $jamkeluarakhir){
+            $statusabsen = 'keluar';
+        }else{
+            $statusabsen = 'terlambat';
+        }
+
 
         // Periksa apakah pegawai ditemukan
         if ($pegawai) {
@@ -37,10 +56,12 @@ class ScanAbsensiController extends Controller
             $jam = date('H:i:s'); // Mendapatkan waktu saat ini dalam format 'H:i:s'
             $alert = 'success';
             $pesan = 'Anda Berhasil Absen';
+            //insert database
             $absensi = Absensi::create([
                 'idpegawais' => $pegawaiId,
                 'tanggal' =>  $tanggal,
                 'jam' => $jam,
+                'status' => $statusabsen,
             ]);
             return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan'));
 
