@@ -28,6 +28,7 @@ class ScanAbsensiController extends Controller
         //mengambil id di table pegawais
         // Cari pegawai berdasarkan RFID
         $pegawai = Pegawai::where('rfid', $rfid)->first();
+       // $jamsekarang = '17:20:00';
         $jamsekarang = date('H:i:s');
         //$jamsekarang = date('17:30:00');
         //ambildata di setting waktu
@@ -35,16 +36,19 @@ class ScanAbsensiController extends Controller
         $status = SettingJam::where('namasetting', $settingwaktu)->first();
         $jammasukawal = $status->jammasukawal;
         $jammasukakhir = $status->jammasukakhir;
-        $jamkeluaraawal = $status->jamkeluaraawal;
+        $jamkeluarawal = $status->jamkeluarawal;
         $jamkeluarakhir = $status->jamkeluarakhir;
 
-        if($jamsekarang >= $jammasukawal AND $jamsekarang <= $jammasukakhir){
+        if ($jamsekarang >= $jammasukawal && $jamsekarang <= $jammasukakhir) {
             $statusabsen = 'masuk';
-        }elseif($jamsekarang >= $jamkeluaraawal AND $jamsekarang <= $jamkeluarakhir){
+        } elseif ($jamsekarang >= $jamkeluarawal && $jamsekarang <= $jamkeluarakhir) {
             $statusabsen = 'keluar';
-        }else{
-            $statusabsen = 'terlambat';
+        } elseif ($jamsekarang > $jammasukakhir && $jamsekarang < $jamkeluarawal) {
+            $statusabsen = 'terlambat'; // Assuming 'terlambat' means 'late' in this context
+        } else {
+            $statusabsen = 'error';
         }
+
 
 
         // Periksa apakah pegawai ditemukan
