@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\ScanAbsensiController;
+use App\Http\Controllers\SettingJamController;
+use App\Http\Controllers\StatusJabatanController;
 use App\Models\Departement;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SettingJamController;
-use App\Http\Controllers\DepartementController;
-use App\Http\Controllers\ScanAbsensiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +58,6 @@ Route::post('/scan/scanabsensi', [ScanAbsensiController::class, 'scanabsensi'])-
 Route::get('/scan/scanabsensiview', [ScanAbsensiController::class, 'scanabsensiview'])->name('scanabsensiview');
 //settingjam
 Route::resource('settingjams', SettingJamController::class);
+//statusjabatan
+Route::resource('statusjabatan', StatusJabatanController::class);
 

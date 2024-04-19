@@ -265,6 +265,11 @@
         </a>
       </li><!-- End Register Page Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed"href="{{ route('statusjabatan.index') }}">
+          <i class="bi bi-dash-circle"></i>
+          <span>Status Jabatan</span>
+        </a>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">

@@ -29,7 +29,7 @@
                     <div class="col-12">
                       <label for="yourUsername" class="form-label"></label>
                       <div class="input-group has-validation">
-                        <input type="text" name="rfid" class="form-control" id="yourUsername" required autofocus>
+                        <input type="text" name="rfid" class="form-control" id="yourUsername" required autofocus style="text-align:center">
                       </div>
                     </div>
                     <div class="col-12">
@@ -43,7 +43,7 @@
 
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit" name="login">Scan</button>
+                      <button class="btn btn-primary w-100" type="submit" name="login" style="display: none;"></button>
                     </div>
                   </form>
 
