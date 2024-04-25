@@ -17,8 +17,10 @@ class CreatePegawaisTable extends Migration
             $table->string('rfid')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('iddepertement');
+            $table->integer('iddepartement');
+            $table->integer('idstatusjabatan');
             $table->timestamps();
+
         });
     }
 

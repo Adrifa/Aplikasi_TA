@@ -279,7 +279,7 @@
       </li><!-- End Login Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
+        <a class="nav-link collapsed" href="{{ route('gaji.index') }}">
           <i class="bi bi-dash-circle"></i>
           <span>Gaji</span>
         </a>

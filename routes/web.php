@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\GajiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ScanAbsensiController;
@@ -60,4 +61,6 @@ Route::get('/scan/scanabsensiview', [ScanAbsensiController::class, 'scanabsensiv
 Route::resource('settingjams', SettingJamController::class);
 //statusjabatan
 Route::resource('statusjabatan', StatusJabatanController::class);
+//gaji
+Route::resource('gaji', GajiController::class);
 

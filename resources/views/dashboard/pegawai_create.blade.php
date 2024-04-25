@@ -93,6 +93,17 @@
     </div>
 
     <div class="row mb-3">
+        <label for="iddepartement" class="col-sm-2 col-form-label">Statusjabatan</label>
+        <div class="col-sm-10">
+            <select name="idstatusjabatan" class="form-control" required>
+                @foreach ($statusjabatans as $statusjabatan)
+                    <option value="{{ $statusjabatan->id }}">{{ $statusjabatan->namastatusjabatan }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
         <div class="col-sm-10 offset-sm-2">
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </div>

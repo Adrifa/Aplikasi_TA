@@ -72,6 +72,8 @@
                   <label for="inputText" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
                     <input type="password" name="password" value="{{ $pegawai->password }}" class="form-control" required>
+                    <input type="checkbox" class="form-check-input" id="check1" name="centang" value="1" >
+                    <label class="form-check-label" for="check1">Check jika mengubah password</label>
                   </div>
                 </div>
 
@@ -86,6 +88,16 @@
                   </div>
                 </div>
 
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Status Jabatan</label>
+                  <div class="col-sm-10">
+                    <select name="idstatusjabatan" class="form-control" required>
+                    @foreach ($statusjabatans as $statusjabatan)
+                        <option value="{{ $statusjabatan->id }}" {{ $pegawai->idstatusjabatan == $statusjabatan->id ? 'selected' : '' }}>{{ $statusjabatan->namastatusjabatan }}</option>
+                    @endforeach
+                    </select>
+                  </div>
+                </div>
 
 
                 <div class="row mb-3">

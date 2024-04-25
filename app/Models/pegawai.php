@@ -19,5 +19,6 @@ class pegawai extends Model
         'email',
         'password',
         'iddepartement',
+        'idstatusjabatan',
     ];
 }

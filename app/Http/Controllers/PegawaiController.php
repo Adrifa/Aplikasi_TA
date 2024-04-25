@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Departement;
 use App\Models\Pegawai;
+use App\Models\StatusJabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -29,7 +30,8 @@ class PegawaiController extends Controller
     public function create()
     {
         $departements = Departement::all();
-        return view('dashboard.pegawai_create', compact('departements'));
+        $statusjabatans = StatusJabatan::all();
+        return view('dashboard.pegawai_create', compact('departements', 'statusjabatans'));
     }
 
     /**
@@ -50,6 +52,7 @@ class PegawaiController extends Controller
             'email' => 'required|email|unique:pegawais',
             'password' => 'required',
             'iddepartement' => 'required',
+            'idstatusjabatan' => 'required',
         ]);
 
     //    try {
@@ -63,6 +66,7 @@ class PegawaiController extends Controller
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
                'iddepartement' => $request->input('iddepartement'),
+            'idstatusjabatan' => $request->input('idstatusjabatan'),
             ]);
 
             // Redirect ke halaman yang sesuai
@@ -96,7 +100,8 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::findOrFail($id);
         $departements = Departement::all();
-        return view('dashboard/pegawai_edit', compact('pegawai', 'departements'));
+        $statusjabatans = StatusJabatan::all();
+        return view('dashboard/pegawai_edit', compact('pegawai', 'departements', 'statusjabatans'));
 
     }
 
@@ -120,11 +125,13 @@ class PegawaiController extends Controller
                     'email' => 'required|email|unique:pegawais,email,' . $id,
                     'password' => 'required',
                    'iddepartement' => 'required',
+                   'idstatusjabatan' => 'required',
                 ]);
 
                 // Temukan pegawai berdasarkan ID
                 $pegawai = Pegawai::findOrFail($id);
-
+                $centang = $request->input('centang');
+                if($centang==1 OR $centang !=null){
                 // Update data pegawai
                 Pegawai::where('id', $id)->update([
                     'namapegawai' => $request->input('namapegawai'),
@@ -135,7 +142,21 @@ class PegawaiController extends Controller
                     'email' => $request->input('email'),
                     'password' => bcrypt($request->input('password')),
                     'iddepartement' => $request->input('iddepartement'),
+                    'idstatusjabatan' => $request->input('idstatusjabatan'),
                 ]);
+                }else{
+                    // Update data pegawai
+                    Pegawai::where('id', $id)->update([
+                        'namapegawai' => $request->input('namapegawai'),
+                        'hp' => $request->input('hp'),
+                        'alamat' => $request->input('alamat'),
+                        'tgllahir' => $request->input('tgllahir'),
+                        'rfid' => $request->input('rfid'),
+                        'email' => $request->input('email'),
+                        'iddepartement' => $request->input('iddepartement'),
+                        'idstatusjabatan' => $request->input('idstatusjabatan'),
+                    ]);
+                }
 
 
                 // Redirect ke halaman index dan tampilkan pesan sukses
