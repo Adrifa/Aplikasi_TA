@@ -64,15 +64,64 @@
                     <div class="row">
                         <div class="card-body">
                             <h5 class="card-title">Absensi <span>| </span></h5>
+                            <div class="col-lg-12">
+
+                                <form action="{{ route('cekbulan.submit') }}" method="POST">
+                                    @csrf
+                                <input type="hidden" name="id" value="{{ $pegawai->id }}" class="form-control" readonly>
+                                 <div class="row">
+                                 <div class="col-sm-6">
+                                 <div class="row mb-6">
+                                    <label for="inputText" class="col-sm-3 col-form-label">Filter</label>
+                                    <div class="col-sm-9">
+                                    <select id="bulan" name="bulan" class="form-select">
+                                        <option value="">Pilih Bulan</option>
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                    </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-3">
+                                  <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <select class="form-select" name="tahun">
+                                            <option value="">Pilih Tahun</option>
+                                            @php
+                                            $tahunSekarang = date('Y');
+                                            @endphp
+                                            <option value="{{ $tahunSekarang - 1 }}">{{ $tahunSekarang - 1 }}</option>
+                                            <option value="{{ $tahunSekarang }}">{{ $tahunSekarang }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" class="btn btn-primary" name="submit">Tampil</button>
+                                    </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                            </form>
+                            </div>
+
+
                             <table class="table datatable">
                                 <thead>
                                     <tr>
                                         <th style="width: 10%;text-align:left">ID</th>
-                                        <th style="text-align: left">Nama</th>
                                         <th style="text-align: center">Tanggal</th>
                                         <th style="text-align: center">Jam</th>
                                         <th style="text-align: center">Status</th>
-                                        <th style="width: 10%;text-align:center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,24 +135,11 @@
                                         @endif
                                         <tr>
                                             <td style="text-align: left">{{ $index + 1 }}</td>
-                                            <td style="text-align: left">{{ $absensi->namapegawai }}</td>
                                             <td style="text-align: left">
                                                 {{ date('d F Y', strtotime($absensi->tanggal)) }}</td>
                                             <td style="text-align: left">{{ date('H:i:s', strtotime($absensi->jam)) }}
                                             </td>
                                             <td style="text-align: left">{{ $absensi->status }}</td>
-                                            <td style="text-align: center">
-                                                <form action="{{ route('absensis.destroy', $absensi->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('absensis.edit', $absensi->id) }}"><button
-                                                            type="button" class="btn btn-success"><i
-                                                                class="bi bi-pencil"></i></button></a>
-                                                    <button type="submit" class="btn btn-danger"><i
-                                                            class="bi bi-trash"></i></button>
-                                                </form>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -50,10 +50,16 @@ class GajiController extends Controller
             }*/
         $departements = Departement::all();
         $statusjabatans = StatusJabatan::all();
+        //data absensis bulan ini
+        $bulan = date('m');
+        $tahun = date('Y');
+        //dd($bulan);
         $absensis  = DB::table('absensis as a')
                         ->leftJoin('pegawais as b', 'b.id', '=', 'a.idpegawais')
                         ->select('a.*', 'b.*')
                         ->where('b.id', '=', $id) // Menambahkan kondisi where
+                        ->whereRaw('MONTH(a.tanggal) = ?', [$bulan])
+                        ->whereRaw('YEAR(a.tanggal) = ?', [$tahun])
                         ->orderBy('a.tanggal', 'DESC')
                         ->get();
         //array total terlambat
@@ -70,5 +76,34 @@ class GajiController extends Controller
     public function destroy($id)
     {
         // Hapus gaji berdasarkan ID
+    }
+
+    public function cekbulan(Request $request)
+    {
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+        $id = $request->input('id');
+
+        $pegawai = DB::table('pegawais as a')
+        ->leftJoin('departements as b', 'b.id', '=', 'a.iddepartement')
+        ->leftJoin('statusjabatan as c', 'c.id', '=', 'a.idstatusjabatan')
+        ->select('a.*', 'b.*', 'c.*')
+        ->where('a.id', '=', $id)
+            ->first();
+
+        $departements = Departement::all();
+        $statusjabatans = StatusJabatan::all();
+
+        $absensis  = DB::table('absensis as a')
+        ->leftJoin('pegawais as b', 'b.id', '=', 'a.idpegawais')
+        ->select('a.*', 'b.*')
+        ->where('b.id', '=', $id) // Menambahkan kondisi where
+            ->whereRaw('MONTH(a.tanggal) = ?', [$bulan])
+            ->whereRaw('YEAR(a.tanggal) = ?', [$tahun])
+            ->orderBy('a.tanggal', 'DESC')
+            ->get();
+        //array total terlambat
+        $b = [];
+        return view('dashboard/gaji_edit', compact('pegawai', 'departements', 'statusjabatans', 'absensis', 'b'));
     }
 }

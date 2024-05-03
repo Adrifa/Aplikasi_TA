@@ -63,4 +63,5 @@ Route::resource('settingjams', SettingJamController::class);
 Route::resource('statusjabatan', StatusJabatanController::class);
 //gaji
 Route::resource('gaji', GajiController::class);
+Route::post('/gaji/cekbulan', [GajiController::class, 'cekbulan'])->name('cekbulan.submit');
 

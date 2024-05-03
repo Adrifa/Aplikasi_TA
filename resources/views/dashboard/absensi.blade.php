@@ -29,7 +29,7 @@
                             <th style="text-align: center">Tanggal</th>
                             <th style="text-align: center">Jam</th>
                             <th style="text-align: center">Status</th>
-                            <th style="width: 10%;text-align:center">Aksi</th>
+                            <!--<th style="width: 10%;text-align:center">Aksi</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +40,7 @@
                                 <td style="text-align: left">{{ date('d F Y', strtotime($absensi->tanggal));  }}</td>
                                 <td style="text-align: left">{{ date('H:i:s', strtotime($absensi->jam));  }}</td>
                                 <td style="text-align: left">{{ $absensi->status }}</td>
+                                <!--
                                 <td style="text-align: center">
                                     <form action="{{ route('absensis.destroy', $absensi->id) }}" method="POST">
                                         @csrf
@@ -47,9 +48,9 @@
                                         <a href="{{ route('absensis.edit', $absensi->id) }}"><button type="button" class="btn btn-success"><i class="bi bi-pencil"></i></button></a>
                                         <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                     </form>
-                                </td>
+                                </td>-->
                             </tr>
- 
+
                         @endforeach
                     </tbody>
                 </table>
