@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DepartementController;
-use App\Http\Controllers\GajiController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\ScanAbsensiController;
-use App\Http\Controllers\SettingJamController;
-use App\Http\Controllers\StatusJabatanController;
 use App\Models\Departement;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GajiController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingJamController;
+use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\ScanAbsensiController;
+use App\Http\Controllers\StatusJabatanController;
 
 
 /*
@@ -64,4 +65,6 @@ Route::resource('statusjabatan', StatusJabatanController::class);
 //gaji
 Route::resource('gaji', GajiController::class);
 Route::post('/gaji/cekbulan', [GajiController::class, 'cekbulan'])->name('cekbulan.submit');
-
+//laporan
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+Route::POST('/laporan/cek', [LaporanController::class, 'cek'])->name('laporan.cek');

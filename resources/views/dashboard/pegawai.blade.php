@@ -20,7 +20,7 @@
          <div class="card info-card sales-card">
           <div class="row">
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Pegawai <span></span></h5>
                 <a href="{{ route('pegawais.create') }}"><button type="button" class="btn btn-outline-primary btn-sm">Tambah Data</button></a>
                 <table class="table datatable">
                     <thead>
