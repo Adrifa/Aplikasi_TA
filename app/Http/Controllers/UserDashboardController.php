@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class UserDashboardController extends Controller
 {
-
     protected $pegawai;
 
     public function __construct(Pegawai $pegawai)
@@ -25,11 +24,11 @@ class DashboardController extends Controller
 
         // Menghitung total absensi
         $total = DB::table(DB::raw("(SELECT id FROM absensis WHERE tanggal = '$tanggalhariini' GROUP BY id) AS grouped_absensis"))
-        ->count();
+            ->count();
 
         // Total terlambat hari ini
         $terlambat = DB::table(DB::raw("(SELECT id FROM absensis WHERE tanggal = '$tanggalhariini' AND status='terlambat' GROUP BY id) AS grouped_absensis"))
-        ->count();
+            ->count();
 
         // Menghitung jumlah total pegawai
         $jumlahpegawai = DB::table('pegawais')->count();
@@ -37,14 +36,14 @@ class DashboardController extends Controller
         $tahun = date('Y');
         // Pegawai terbaik
         $pegawaiterbaik = DB::table('absensis')
-        ->select('idpegawais as id', DB::raw('COUNT(*) as total'))
-        ->where('status', 'masuk')
-        ->whereMonth('tanggal', $bulan)
-        ->whereYear('tanggal', $tahun)
-        ->groupBy('idpegawais')
-        ->orderBy('total', 'DESC')
-        ->get();
-        //Pegawai terburuk
+            ->select('idpegawais as id', DB::raw('COUNT(*) as total'))
+            ->where('status', 'masuk')
+            ->whereMonth('tanggal', $bulan)
+            ->whereYear('tanggal', $tahun)
+            ->groupBy('idpegawais')
+            ->orderBy('total', 'DESC')
+            ->get();
+
         $pegawaiterburuk = DB::table('absensis')
             ->select('idpegawais as id', DB::raw('COUNT(*) as total'))
             ->where('status', 'terlambat')
@@ -53,11 +52,20 @@ class DashboardController extends Controller
             ->groupBy('idpegawais')
             ->orderBy('total', 'DESC')
             ->get();
-        //Ulang tahun
-        $ulangtahun = DB::table('pegawais')
-        ->whereMonth('tgllahir', $bulan)
-        ->get();
 
+
+        $ulangtahun = DB::table('pegawais')
+            ->whereMonth('tgllahir', $bulan)
+            ->get();
+
+        $pegawaiterburuk = DB::table('absensis')
+            ->select('idpegawais as id', DB::raw('COUNT(*) as total'))
+            ->where('status', 'terlambat')
+            ->whereMonth('tanggal', $bulan)
+            ->whereYear('tanggal', $tahun)
+            ->groupBy('idpegawais')
+            ->orderBy('total', 'DESC')
+            ->get();
         //jumlah masuk tepat
         $data_tepat = [];
         for ($i = 1; $i <= 12; $i++) {
@@ -69,11 +77,11 @@ class DashboardController extends Controller
 
             $data_tepat[] = $totalMasuk;
         }
-        //jumlah terlambat
+
         $data_terlambat = [];
         for ($i = 1; $i <= 12; $i++) {
             $totalMasuk = DB::table('absensis')
-            ->where('status', 'terlambat')
+                ->where('status', 'terlambat')
                 ->whereMonth('tanggal', $i)
                 ->whereYear('tanggal', $tahun)
                 ->count();
@@ -82,7 +90,7 @@ class DashboardController extends Controller
         }
 
         // Kirim data ke view
-        return view('dashboard.index', [
+        return view('user.index', [
             'total' => $total,
             'data_tepat' => $data_tepat,
             'data_terlambat' => $data_terlambat,

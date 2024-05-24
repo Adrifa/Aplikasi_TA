@@ -48,7 +48,7 @@
                                     <div class="ps-3">
                                         <h6>{{ $total }}</h6>
                                         <span class="text-success small pt-1 fw-bold"></span> <span
-                                            class="text-muted small pt-2 ps-1">Tepat</span>
+                                            class="text-muted small pt-2 ps-1">Masuk</span>
 
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                             </div>
 
                             <div class="card-body">
-                           <h5 class="card-title">Grafik Absensi  Tahun {{ date('Y') }}</span></h5>
+                                <h5 class="card-title">Reports <span>/Today</span></h5>
 
                                 <!-- Line Chart -->
               <!-- Column Chart -->
@@ -165,10 +165,20 @@
                   new ApexCharts(document.querySelector("#columnChart"), {
                     series: [{
                       name: 'Tepat',
-                     data: {!! json_encode($data_tepat) !!}
-                    },{
+                      data: [
+
+                        $totalMasuk = DB::table('absensis')
+                        ->where('status', 'masuk')
+                        ->whereMonth('tanggal', '05')
+                        ->whereYear('tanggal', '2024')
+                        ->count();
+
+                        44, 55, 57, 56, 61, 58, 63, 60, 66, 66, 66, 66
+
+                    ]
+                    }, {
                       name: 'Terlambat',
-                     data: {!! json_encode($data_terlambat) !!}
+                      data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 66, 66, 66]
                     }],
                     chart: {
                       type: 'bar',
@@ -194,7 +204,7 @@
                     },
                     yaxis: {
                       title: {
-                        text: ' (Pegawai)'
+                        text: ' (Orang)'
                       }
                     },
                     fill: {
@@ -203,7 +213,7 @@
                     tooltip: {
                       y: {
                         formatter: function(val) {
-                          return "" + val + " Pegawai"
+                          return "" + val + " Orang"
                         }
                       }
                     }
@@ -246,7 +256,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Ranking karyawan terbaik<span></span></h5>
+                        <h5 class="card-title">Rangking karyawan terbaik<span></span></h5>
 
                         <div class="activity">
                             @php
@@ -291,7 +301,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Ranking karyawan terburuk<span></span></h5>
+                        <h5 class="card-title">Rangking karyawan terburuk<span></span></h5>
 
                         <div class="activity">
                             @php

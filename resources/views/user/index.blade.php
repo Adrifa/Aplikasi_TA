@@ -1,5 +1,5 @@
-@include('dashboard.layouts.top')
-@include('dashboard.layouts.header')
+@include('user.layouts.top')
+@include('user.layouts.header')
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -371,4 +371,4 @@
 
 </main><!-- End #main -->
 
-@include('dashboard.layouts.foot')
+@include('user.layouts.foot')

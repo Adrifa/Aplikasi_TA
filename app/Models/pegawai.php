@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pegawai extends Model
+class Pegawai extends Authenticatable
 {
-
     use HasFactory;
 
     protected $fillable = [
@@ -21,4 +21,12 @@ class pegawai extends Model
         'iddepartement',
         'idstatusjabatan',
     ];
+
+    protected $hidden = ['password', 'remember_token'];
+
+
+    public function DataPegawai($id)
+    {
+        return $this->where('id', $id)->get();
+    }
 }

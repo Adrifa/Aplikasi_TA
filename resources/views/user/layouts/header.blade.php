@@ -176,7 +176,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>{{ Session::get('email') }}</h6>
+              <h6> {{ Session::get('email') }}</h6>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -203,7 +203,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('dashboard.index') }}">
+        <a class="nav-link " href="{{ route('user.index') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -213,55 +213,15 @@
 
       <li class="nav-heading">Menu</li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('pegawais.index') }}">
-                <i class="bi bi-person"></i>
-                <span>Karyawan</span>
-            </a>
-        </li>
-
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('departements.index') }}">
-          <i class="bi bi-envelope"></i>
-          <span>Departement</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('absensis.index') }}">
-          <i class="bi bi-card-list"></i>
-          <span>Absensi</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed"href="{{ route('statusjabatan.index') }}">
-          <i class="bi bi-dash-circle"></i>
-          <span>Status Jabatan</span>
-        </a>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('laporan.index') }}">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Laporan</span>
-        </a>
-      </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('gaji.index') }}">
+        <a class="nav-link collapsed" href="{{ route('usergaji.index') }}">
           <i class="bi bi-dash-circle"></i>
           <span>Gaji</span>
         </a>
       </li><!-- End Error 404 Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('settingjams.index') }}">
-          <i class="bi bi-card-list"></i>
-          <span>Setting Jam</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('login.logout') }}">
+        <a class="nav-link collapsed" href="{{ route('login') }}">
           <i class="bi bi-file-earmark"></i>
           <span>Keluar</span>
         </a>

@@ -12,7 +12,8 @@ use App\Http\Controllers\SettingJamController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\ScanAbsensiController;
 use App\Http\Controllers\StatusJabatanController;
-
+use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\UserGajiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,16 @@ Route::get('/', function () {
 });
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-
-
-Route::get('dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/login/logout', [LoginController::class, 'logout'])->name('login.logout');
+//scan
+Route::get('/scan', [ScanAbsensiController::class, 'index'])->name('scan');
+Route::post('/scan/scanabsensi', [ScanAbsensiController::class, 'scanabsensi'])->name('scanabsensi.submit');
+Route::get('/scan/scanabsensiview', [ScanAbsensiController::class, 'scanabsensiview'])->name('scanabsensiview');
+Route::group(
+    ['prefix' => 'admin', 'middleware' => ['admin']],
+    function () {
+// Route di web.php
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 //pegawai
 Route::get('/pegawais', [PegawaiController::class, 'index'])->name('pegawais.index');
 Route::get('/pegawais/create', [PegawaiController::class, 'create'])->name('pegawais.create');
@@ -54,10 +62,7 @@ Route::post('/absensis', [AbsensiController::class, 'store'])->name('absensis.st
 Route::get('/absensis/{id}/edit', [AbsensiController::class, 'edit'])->name('absensis.edit');
 Route::put('/absensis/{id}', [AbsensiController::class, 'update'])->name('absensis.update');
 Route::delete('/absensis/{id}', [AbsensiController::class, 'destroy'])->name('absensis.destroy');
-//scan
-Route::get('/scan', [ScanAbsensiController::class, 'index'])->name('scan');
-Route::post('/scan/scanabsensi', [ScanAbsensiController::class, 'scanabsensi'])->name('scanabsensi.submit');
-Route::get('/scan/scanabsensiview', [ScanAbsensiController::class, 'scanabsensiview'])->name('scanabsensiview');
+
 //settingjam
 Route::resource('settingjams', SettingJamController::class);
 //statusjabatan
@@ -68,3 +73,12 @@ Route::post('/gaji/cekbulan', [GajiController::class, 'cekbulan'])->name('cekbul
 //laporan
 Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 Route::POST('/laporan/cek', [LaporanController::class, 'cek'])->name('laporan.cek');
+    }
+);
+Route::group(['prefix' => 'pegawai', 'middleware' => ['pegawai']], function () {
+    Route::get('user/index', [UserDashboardController::class, 'index'])->name('user.index');
+    // Tambahkan rute pegawai lainnya di sini
+    //gaji
+    Route::resource('usergaji', UserGajiController::class);
+});
+

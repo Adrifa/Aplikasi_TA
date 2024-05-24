@@ -8,7 +8,7 @@ use App\Models\Pegawai;
 use App\Models\StatusJabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Http\Response;
 class PegawaiController extends Controller
 {
     /**

@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'pegawai' => [
+            'driver' => 'session',
+            'provider' => 'pegawai',
+        ],
     ],
 
     /*
@@ -64,7 +72,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        // Provider lainnya
+        'pegawai' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pegawai::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
