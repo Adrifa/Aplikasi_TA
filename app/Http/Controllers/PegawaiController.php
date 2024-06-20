@@ -42,7 +42,6 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-    // dd($request);
         $request->validate([
             'namapegawai' => 'required',
             'hp' => 'required',
@@ -55,7 +54,6 @@ class PegawaiController extends Controller
             'idstatusjabatan' => 'required',
         ]);
 
-    //    try {
             // Simpan data pegawai ke dalam database
             Pegawai::create([
                 'namapegawai' => $request->input('namapegawai'),
@@ -71,10 +69,6 @@ class PegawaiController extends Controller
 
             // Redirect ke halaman yang sesuai
             return redirect()->route('pegawais.index'); // Ganti 'nama_route' dengan nama route yang sesuai
-     //   } catch (\Exception $e) {
-            // Tangani error jika terjadi
-      //      return back()->withError($e->getMessage())->withInput();
-    //    }
     }
 
 

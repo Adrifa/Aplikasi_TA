@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
-  <meta content="" name="description">
+  <title>SIRIAN | SISTEM INFORMASI KEHADIRAN DAN PENGGAJIAN DENGAN KARTU RFID</title>
+  <meta content="" name="SISTEM INFORMASI KEHADIRAN DAN PENGGAJIAN DENGAN KARTU RFID">
   <meta content="" name="keywords">
 
   <!-- Favicons -->

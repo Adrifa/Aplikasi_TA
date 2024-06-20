@@ -21,9 +21,7 @@ class ScanAbsensiController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
         // dd($request);
-        $request->validate([
-            'rfid' => 'required',
-        ]);
+        $request->validate([ 'rfid' => 'required', ]);
         $rfid = $request->input('rfid');
         //mengambil id di table pegawais
         // Cari pegawai berdasarkan RFID
@@ -38,7 +36,6 @@ class ScanAbsensiController extends Controller
         $jammasukakhir = $status->jammasukakhir;
         $jamkeluarawal = $status->jamkeluarawal;
         $jamkeluarakhir = $status->jamkeluarakhir;
-
         if ($jamsekarang >= $jammasukawal && $jamsekarang <= $jammasukakhir) {
             $statusabsen = 'masuk';
         } elseif ($jamsekarang >= $jamkeluarawal && $jamsekarang <= $jamkeluarakhir) {
@@ -48,9 +45,6 @@ class ScanAbsensiController extends Controller
         } else {
             $statusabsen = 'error';
         }
-
-
-
         // Periksa apakah pegawai ditemukan
         if ($pegawai) {
             // Jika ditemukan, ambil ID pegawai
