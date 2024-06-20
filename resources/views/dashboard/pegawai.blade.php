@@ -36,9 +36,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pegawais as $pegawai)
+                        @foreach($pegawais  as $index => $pegawai)
                             <tr>
-                                <td style="text-align: left">{{ $pegawai->id }}</td>
+                                <td style="text-align: left">{{ $index + 1 }}</td>
                                 <td style="text-align: left">{{ $pegawai->namapegawai }}</td>
                                 <td style="text-align: left">{{ $pegawai->hp }}</td>
                                 <td style="text-align: left">{{ $pegawai->alamat }}</td>
