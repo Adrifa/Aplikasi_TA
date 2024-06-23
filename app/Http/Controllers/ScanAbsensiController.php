@@ -46,6 +46,7 @@ class ScanAbsensiController extends Controller
         } else {
             $statusabsen = 'error';
         }
+        $date = Carbon::now()->format('d F Y');
         // Periksa apakah pegawai ditemukan
         if ($pegawai) {
             // Jika ditemukan, ambil ID pegawai
@@ -74,7 +75,7 @@ class ScanAbsensiController extends Controller
             $jam ='';
             $alert = 'danger';
             $pesan = 'Maaf. Data Tidak Ditemukan';
-            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan'));
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan','date'));
 
         }
     }

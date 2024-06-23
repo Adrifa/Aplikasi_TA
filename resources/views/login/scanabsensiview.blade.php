@@ -19,8 +19,9 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4"></h5>
-                    <p class="text-center small">TAP Kartu Kerja Anda Disini :</p>
+                    <div style="text-align: center;font-size: 18px;font-weight: 900">{{  $date }}</div>
+                    <div id="clock" style="text-align: center;font-size: 18px;font-weight: 900"></div>
+                    <div class="text-center small">TAP Kartu Kerja Anda Disini :</div>
                   </div>
 
                   <form  method="POST" action="{{ route('scanabsensi.submit') }}" class="row g-3 needs-validation" novalidate>
@@ -49,6 +50,22 @@
 
                 </div>
               </div>
+              <script>
+                function updateClock() {
+                    const now = new Date();
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    const timeString = `${hours}:${minutes}:${seconds}`;
+
+                    document.getElementById('clock').textContent = timeString;
+                }
+
+                // Update the clock immediately and then every second
+                updateClock();
+                setInterval(updateClock, 1000);
+
+              </script>
  <!--
               <div class="credits">
 
