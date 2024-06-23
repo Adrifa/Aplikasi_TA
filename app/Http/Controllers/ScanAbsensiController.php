@@ -14,7 +14,8 @@ class ScanAbsensiController extends Controller
     {
         // $pegawais = Pegawai::all();
         //  return view('dashboard/pegawai', compact('pegawais'));
-          return view('login.scan');
+        $date = Carbon::now()->format('d F Y');
+        return view('login.scan', compact('date'));
 
     }
     public function scanabsensi(Request $request)
@@ -61,7 +62,8 @@ class ScanAbsensiController extends Controller
                 'jam' => $jam,
                 'status' => $statusabsen,
             ]);
-            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan'));
+            $date = Carbon::now()->format('d F Y');
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan', 'date'));
 
 
         } else {
