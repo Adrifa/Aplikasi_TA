@@ -14,27 +14,16 @@ class ScanAbsensiController extends Controller
     {
         // $pegawais = Pegawai::all();
         //  return view('dashboard/pegawai', compact('pegawais'));
-        $date = Carbon::now()->format('d F Y');
-        $katamotivasi = [
-            "Kerja keras mengalahkan bakat ketika bakat tidak bekerja keras.",
-            "Setiap langkah kecil yang kita ambil hari ini membawa kita lebih dekat ke tujuan besar kita.",
-            "Kesuksesan tidak datang kepada mereka yang menunggu, tetapi kepada mereka yang bekerja keras dan berusaha tanpa henti.",
-            "Jangan takut akan kegagalan; itu adalah batu loncatan menuju kesuksesan.",
-            "Ketika kita menikmati apa yang kita lakukan, pekerjaan menjadi lebih ringan dan hasilnya lebih memuaskan.",
-            "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar menjadi lebih baik.",
-            "Kerja keras adalah harga yang harus dibayar untuk mencapai mimpi besar.",
-            "Keberhasilan adalah gabungan dari kerja keras, ketekunan, dan komitmen.",
-            "Tidak ada yang tidak mungkin; semua bisa dicapai dengan tekad dan usaha yang sungguh-sungguh.",
-            "Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin."
-        ];
-        return view('login.scan', compact('date', 'katamotivasi'));
+          return view('login.scan');
 
     }
     public function scanabsensi(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');
         // dd($request);
-        $request->validate([ 'rfid' => 'required', ]);
+        $request->validate([
+            'rfid' => 'required',
+        ]);
         $rfid = $request->input('rfid');
         //mengambil id di table pegawais
         // Cari pegawai berdasarkan RFID
@@ -49,6 +38,7 @@ class ScanAbsensiController extends Controller
         $jammasukakhir = $status->jammasukakhir;
         $jamkeluarawal = $status->jamkeluarawal;
         $jamkeluarakhir = $status->jamkeluarakhir;
+
         if ($jamsekarang >= $jammasukawal && $jamsekarang <= $jammasukakhir) {
             $statusabsen = 'masuk';
         } elseif ($jamsekarang >= $jamkeluarawal && $jamsekarang <= $jamkeluarakhir) {
@@ -58,7 +48,9 @@ class ScanAbsensiController extends Controller
         } else {
             $statusabsen = 'error';
         }
-        $date = Carbon::now()->format('d F Y');
+
+
+
         // Periksa apakah pegawai ditemukan
         if ($pegawai) {
             // Jika ditemukan, ambil ID pegawai
@@ -75,22 +67,7 @@ class ScanAbsensiController extends Controller
                 'jam' => $jam,
                 'status' => $statusabsen,
             ]);
-            $date = Carbon::now()->format('d F Y');
-
-            $katamotivasi = [
-                "Kerja keras mengalahkan bakat ketika bakat tidak bekerja keras.",
-                "Setiap langkah kecil yang kita ambil hari ini membawa kita lebih dekat ke tujuan besar kita.",
-                "Kesuksesan tidak datang kepada mereka yang menunggu, tetapi kepada mereka yang bekerja keras dan berusaha tanpa henti.",
-                "Jangan takut akan kegagalan; itu adalah batu loncatan menuju kesuksesan.",
-                "Ketika kita menikmati apa yang kita lakukan, pekerjaan menjadi lebih ringan dan hasilnya lebih memuaskan.",
-                "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar menjadi lebih baik.",
-                "Kerja keras adalah harga yang harus dibayar untuk mencapai mimpi besar.",
-                "Keberhasilan adalah gabungan dari kerja keras, ketekunan, dan komitmen.",
-                "Tidak ada yang tidak mungkin; semua bisa dicapai dengan tekad dan usaha yang sungguh-sungguh.",
-                "Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin."
-            ];
-
-            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan','date', 'katamotivasi'));
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan'));
 
 
         } else {
@@ -101,20 +78,7 @@ class ScanAbsensiController extends Controller
             $jam ='';
             $alert = 'danger';
             $pesan = 'Maaf. Data Tidak Ditemukan';
-
-            $katamotivasi = [
-                    "Kerja keras mengalahkan bakat ketika bakat tidak bekerja keras.",
-                    "Setiap langkah kecil yang kita ambil hari ini membawa kita lebih dekat ke tujuan besar kita.",
-                    "Kesuksesan tidak datang kepada mereka yang menunggu, tetapi kepada mereka yang bekerja keras dan berusaha tanpa henti.",
-                    "Jangan takut akan kegagalan; itu adalah batu loncatan menuju kesuksesan.",
-                    "Ketika kita menikmati apa yang kita lakukan, pekerjaan menjadi lebih ringan dan hasilnya lebih memuaskan.",
-                    "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar menjadi lebih baik.",
-                    "Kerja keras adalah harga yang harus dibayar untuk mencapai mimpi besar.",
-                    "Keberhasilan adalah gabungan dari kerja keras, ketekunan, dan komitmen.",
-                    "Tidak ada yang tidak mungkin; semua bisa dicapai dengan tekad dan usaha yang sungguh-sungguh.",
-                    "Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin."
-                ];
-            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan','date', 'katamotivasi'));
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan'));
 
         }
     }
