@@ -15,7 +15,19 @@ class ScanAbsensiController extends Controller
         // $pegawais = Pegawai::all();
         //  return view('dashboard/pegawai', compact('pegawais'));
         $date = Carbon::now()->format('d F Y');
-        return view('login.scan', compact('date'));
+        $katamotivasi = [
+            "Kerja keras mengalahkan bakat ketika bakat tidak bekerja keras.",
+            "Setiap langkah kecil yang kita ambil hari ini membawa kita lebih dekat ke tujuan besar kita.",
+            "Kesuksesan tidak datang kepada mereka yang menunggu, tetapi kepada mereka yang bekerja keras dan berusaha tanpa henti.",
+            "Jangan takut akan kegagalan; itu adalah batu loncatan menuju kesuksesan.",
+            "Ketika kita menikmati apa yang kita lakukan, pekerjaan menjadi lebih ringan dan hasilnya lebih memuaskan.",
+            "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar menjadi lebih baik.",
+            "Kerja keras adalah harga yang harus dibayar untuk mencapai mimpi besar.",
+            "Keberhasilan adalah gabungan dari kerja keras, ketekunan, dan komitmen.",
+            "Tidak ada yang tidak mungkin; semua bisa dicapai dengan tekad dan usaha yang sungguh-sungguh.",
+            "Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin."
+        ];
+        return view('login.scan', compact('date', 'katamotivasi'));
 
     }
     public function scanabsensi(Request $request)
@@ -64,7 +76,21 @@ class ScanAbsensiController extends Controller
                 'status' => $statusabsen,
             ]);
             $date = Carbon::now()->format('d F Y');
-            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan', 'date'));
+
+            $katamotivasi = [
+                "Kerja keras mengalahkan bakat ketika bakat tidak bekerja keras.",
+                "Setiap langkah kecil yang kita ambil hari ini membawa kita lebih dekat ke tujuan besar kita.",
+                "Kesuksesan tidak datang kepada mereka yang menunggu, tetapi kepada mereka yang bekerja keras dan berusaha tanpa henti.",
+                "Jangan takut akan kegagalan; itu adalah batu loncatan menuju kesuksesan.",
+                "Ketika kita menikmati apa yang kita lakukan, pekerjaan menjadi lebih ringan dan hasilnya lebih memuaskan.",
+                "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar menjadi lebih baik.",
+                "Kerja keras adalah harga yang harus dibayar untuk mencapai mimpi besar.",
+                "Keberhasilan adalah gabungan dari kerja keras, ketekunan, dan komitmen.",
+                "Tidak ada yang tidak mungkin; semua bisa dicapai dengan tekad dan usaha yang sungguh-sungguh.",
+                "Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin."
+            ];
+
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan','date', 'katamotivasi'));
 
 
         } else {
@@ -75,7 +101,20 @@ class ScanAbsensiController extends Controller
             $jam ='';
             $alert = 'danger';
             $pesan = 'Maaf. Data Tidak Ditemukan';
-            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan','date'));
+
+            $katamotivasi = [
+                    "Kerja keras mengalahkan bakat ketika bakat tidak bekerja keras.",
+                    "Setiap langkah kecil yang kita ambil hari ini membawa kita lebih dekat ke tujuan besar kita.",
+                    "Kesuksesan tidak datang kepada mereka yang menunggu, tetapi kepada mereka yang bekerja keras dan berusaha tanpa henti.",
+                    "Jangan takut akan kegagalan; itu adalah batu loncatan menuju kesuksesan.",
+                    "Ketika kita menikmati apa yang kita lakukan, pekerjaan menjadi lebih ringan dan hasilnya lebih memuaskan.",
+                    "Setiap tantangan adalah kesempatan untuk tumbuh dan belajar menjadi lebih baik.",
+                    "Kerja keras adalah harga yang harus dibayar untuk mencapai mimpi besar.",
+                    "Keberhasilan adalah gabungan dari kerja keras, ketekunan, dan komitmen.",
+                    "Tidak ada yang tidak mungkin; semua bisa dicapai dengan tekad dan usaha yang sungguh-sungguh.",
+                    "Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin."
+                ];
+            return view('login.scanabsensiview', compact('pegawaiId', 'namapegawai', 'tanggal', 'jam', 'alert', 'pesan','date', 'katamotivasi'));
 
         }
     }

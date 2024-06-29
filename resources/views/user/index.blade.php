@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Absensi <span>| Hari ini</span></h5>
+                                <h5 class="card-title">Presensi <span>| Hari ini</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
@@ -154,7 +154,7 @@
                             </div>
 
                             <div class="card-body">
-                           <h5 class="card-title">Grafik Absensi  Tahun {{ date('Y') }}</span></h5>
+                          <h5 class="card-title">Grafik trend paling sering tepat waktu, sering terlambat {{ date('Y') }}</span></h5>
 
                                 <!-- Line Chart -->
               <!-- Column Chart -->
@@ -246,7 +246,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Ranking karyawan terbaik<span></span></h5>
+                          <h5 class="card-title">Ranking karyawan tepat waktu<span></span></h5>
 
                         <div class="activity">
                             @php
@@ -291,7 +291,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Ranking karyawan terburuk<span></span></h5>
+                           <h5 class="card-title">Ranking karyawan sering terlambat<span></span></h5>
 
                         <div class="activity">
                             @php
@@ -337,8 +337,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Ulang Bulan ini<span></span></h5>
-
+                        <h5 class="card-title">Ulang tahun tanggal terdekat<span></span></h5>
                         <div class="activity">
                             @php
                                 $nomorut1 = 1; // Inisialisasi nomor urut

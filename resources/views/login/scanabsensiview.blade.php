@@ -15,7 +15,10 @@
               </div><!-- End Logo -->
 
               <div class="card mb-3">
-
+                    <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert" style="text-align:center">
+                     <h2 >Motivasi hari ini :</h2>
+                      " <span id="motivasiSpan" ></span> "
+                    </div>
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
@@ -66,6 +69,21 @@
                 setInterval(updateClock, 1000);
 
               </script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const motivasi = @json($katamotivasi);
+                        let index = 0;
+                        const motivasiSpan = document.getElementById('motivasiSpan');
+
+                        function updateMotivasi() {
+                            motivasiSpan.textContent = motivasi[index];
+                            index = (index + 1) % motivasi.length;
+                        }
+
+                        updateMotivasi();
+                        setInterval(updateMotivasi, 8000); // Ganti teks setiap 5 detik
+                    });
+                </script>
  <!--
               <div class="credits">
 
