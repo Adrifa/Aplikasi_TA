@@ -40,6 +40,15 @@
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
+                    
+                    <div class="col-12">
+                      <strong> Captcha : </strong>
+                      {!! NoCaptcha :: renderJs() !!}
+                      {!! NoCaptcha :: display() !!}
+                      @error('g-recaptcha-response')
+                        <span class = "invalid-feedback" style="display: block;">{{$message}}</span>
+                      @enderror
+                    </div>
 
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit" name="login">Login</button>
